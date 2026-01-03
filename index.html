@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facultad de Obstetricia | UNICA</title>
+    <link rel="icon" type="image/png" href="imagenes/obstetricialogo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="imagenes/obstetricialogo.png">
+    <!-- Tailwind CSS para diseño moderno y responsive -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --color-guinda: #800000;
+            --color-guinda-light: #a52a2a;
+            --color-rosa: #fbcfe8; /* pink-200 */
+            --color-rosa-fuerte: #db2777; /* pink-600 */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .active-link {
+            background-color: #fff1f2;
+            color: var(--color-guinda);
+            border-right: 4px solid var(--color-guinda);
+        }
+
+        .content-fade {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos personalizados para el scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fdf2f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-guinda);
+            border-radius: 4px;
+        }
+
+        .bg-guinda { background-color: var(--color-guinda); }
+        .text-guinda { color: var(--color-guinda); }
+        .border-guinda { border-color: var(--color-guinda); }
+        .hover-bg-guinda:hover { background-color: var(--color-guinda-light); }
+    </style>
+</head>
+<body class="bg-pink-50/30 text-gray-800">
+
+    <!-- Header Principal -->
+    <header class="bg-white border-b border-pink-100 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo UNICA (Izquierda) -->
+                <div class="flex items-center space-x-3">
+                    <img src="imagenes/unicalogo.png" alt="Logo UNICA" class="h-14 w-14 object-contain">
+                    <img src="imagenes/obstetricialogo.png" alt="Logo UNICA" class="h-14 w-14 object-contain">
+                    <div class="hidden md:block">
+                        <h1 class="text-sm font-bold text-red-900 leading-tight">UNIVERSIDAD NACIONAL SAN LUIS GONZAGA<br>Facultad de Obstetricia</h1>
+                    </div>
+                </div>
+
+            
+
+                <!-- Logo Facultad e Interacción (Derecha) -->
+                <div class="flex items-center space-x-4">
+                    <img src="imagenes/unicalogo.png" alt="Logo UNICA" class="h-14 w-14 object-contain">
+                    <a href="https://aulavirtual.unica.edu.pe/" target="_blank" class="hidden md:flex items-center bg-guinda hover-bg-guinda text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors shadow-md">
+                        <i data-lucide="monitor" class="w-4 h-4 mr-2"></i>
+                        Aula Virtual
+                    </a>
+                    
+                    <!-- Botón Hamburguesa -->
+                    <button id="menu-toggle" class="lg:hidden text-red-900 focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex min-h-screen">
+        <!-- Sidebar / Menú Lateral -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 bg-white border-r border-pink-100 w-64 z-40 sidebar-transition -translate-x-full lg:translate-x-0 lg:static">
+            <nav class="mt-4 px-2 space-y-1 overflow-y-auto h-[calc(100vh-80px)]">
+                <a href="#" onclick="navigate('inicio')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="home" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Inicio
+                </a>
+                <a href="#" onclick="navigate('historia')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="book-open" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Historia
+                </a>
+                <a href="#" onclick="navigate('autoridades')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="users" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Autoridades
+                </a>
+                <a href="#" onclick="navigate('consejo')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="gantt-chart-square" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Consejo de Facultad
+                </a>
+                <a href="#" onclick="navigate('programas')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Programas Académicos
+                </a>
+                <a href="#" onclick="navigate('docentes')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="user-square-2" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Docentes
+                </a>
+                <a href="#" onclick="navigate('malla')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="clipboard-list" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Malla Curricular
+                </a>
+                <a href="#" onclick="navigate('eventos')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="building-2" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Eventos e Infraestructura
+                </a>
+                <a href="#" onclick="navigate('noticias')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="megaphone" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Noticias y Avisos
+                </a>
+                <a href="#" onclick="navigate('testimonios')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="message-square" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Testimonios
+                </a>
+                <a href="#" onclick="navigate('faq')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="help-circle" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Preguntas Frecuentes
+                </a>
+                <a href="#" onclick="navigate('contacto')" class="nav-item flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-700 hover:bg-pink-50 group">
+                    <i data-lucide="mail" class="w-5 h-5 mr-3 text-pink-400 group-hover:text-red-800"></i> Contáctanos
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Área de Contenido Principal -->
+        <main class="flex-1 p-6 lg:p-10 overflow-x-hidden">
+            <div id="main-content" class="content-fade max-w-6xl mx-auto">
+                <!-- Cargador Inicial -->
+                <div class="flex flex-col items-center justify-center min-h-[60vh] text-center">
+                    <i data-lucide="loader-2" class="w-12 h-12 text-red-800 animate-spin mb-4"></i>
+                    <p class="text-xl text-gray-600">Cargando...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Overlay para móvil -->
+    <div id="overlay" class="fixed inset-0 bg-red-900 bg-opacity-20 z-30 hidden lg:hidden"></div>
+
+    <script>
+        // Inicializar Iconos
+        lucide.createIcons();
+
+        // Control de Menú Móvil
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+
+        // Sistema de Navegación Dinámica
+        const contentArea = document.getElementById('main-content');
+        
+        const views = {
+            inicio: `
+                <div class="space-y-8">
+                    <div class="relative rounded-3xl overflow-hidden h-[450px] shadow-2xl border-4 border-white">
+                        <img src="imagenes/banner.jpg" class="w-full h-full object-cover" alt="Banner Facultad">
+                        <div class="absolute inset-0 bg-gradient-to-t from-red-950/80 via-transparent to-transparent flex items-end p-10">
+                            <div class="text-white max-w-2xl">
+                                <h2
+  class="text-5xl font-bold mb-4 leading-tight"
+  style="text-shadow: 2px 2px 6px rgba(0,0,0,0.3);"
+>
+  Excelencia en Salud Reproductiva
+</h2>
+
+
+                                <p class="text-xl opacity-90 font-light italic">"Formando profesionales con vocación, ciencia y corazón."</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-red-800">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 bg-pink-100 rounded-lg mr-3">
+                                    <i data-lucide="target" class="w-6 h-6 text-red-800"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-red-900">Misión</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">Formar profesionales de obstetricia competentes, con base científica, humanística y ética, capaces de responder a las demandas de salud de la sociedad...</p>
+                        </div>
+                        <div class="bg-white p-8 rounded-2xl shadow-sm border-t-4 border-pink-400">
+                            <div class="flex items-center mb-4">
+                                <div class="p-2 bg-pink-100 rounded-lg mr-3">
+                                    <i data-lucide="eye" class="w-6 h-6 text-pink-600"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-red-900">Visión</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">Ser una facultad líder y acreditada a nivel nacional e internacional, reconocida por la calidad de su enseñanza e investigación.</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            historia: `
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+                    <h2 class="text-3xl font-bold text-red-900 mb-6 flex items-center">
+                        <i data-lucide="history" class="mr-3 text-pink-600"></i> Nuestra Historia
+                    </h2>
+                    <img src="imagenes/historia.jpg" class="w-full h-72 object-cover rounded-2xl mb-8 shadow-md" alt="Foto histórica">
+                    <div class="max-w-4xl mx-auto space-y-6 text-gray-700 leading-relaxed">
+                        <p class="first-letter:text-5xl first-letter:font-bold first-letter:text-red-800 first-letter:mr-3 first-letter:float-left">La historia de esta facultad es un relato de perseverancia profesional. </p>
+                        <p>Aunque la UNICA opera desde los años 60, la Facultad de Obstetricia es una institución administrativamente joven, nacida del esfuerzo colectivo de obstetrices que buscaron autonomía académica durante más de dos décadas.
+<p>De la iniciativa a la realidad (1990 - 2013)
+El camino inició formalmente en la década de 1990, cuando un grupo visionario de profesionales —entre ellas Marina Yataco Aguirre, Amparo Cahua Jayo, Virginia Cuba Calderón y Carmen Laos Anchante— impulsó el proyecto para crear una escuela profesional independiente. Su objetivo era jerarquizar la profesión y atender la urgente demanda de salud materna en la región Ica.
+A pesar de lograr avances administrativos mediante resoluciones vicerrectorales en 1990 y 1995, el proyecto tardó varios años en materializarse completamente debido a procesos burocráticos internos de la universidad.
+
+<p>El hito definitivo llegó en el año 2013, momento en el que se consolidó su independencia de otras facultades de ciencias de la salud.
+
+<p><b>La facultad fue creada el 15 de enero de 2013 (Resolución Rectoral N° 046-R-UNICA-2013) y recibió su autorización de funcionamiento el 4 de marzo de 2013 (Resolución Rectoral N° 273-R-UNICA-2013).</b>
+
+<p>Desde su fundación, la facultad se ha dedicado a la formación de Licenciados en Obstetricia con enfoque en salud pública, neonatología y salud reproductiva. Recientemente, tras el licenciamiento institucional de la UNICA por la SUNEDU en 2022, la facultad ha modernizado sus estándares de calidad educativa para seguir sirviendo a la comunidad iqueña.</p>
+                    </div>
+                </div>
+            `,
+         autoridades: `
+<div class="max-w-7xl mx-auto px-6">
+  <h2 class="text-3xl font-bold text-red-900 mb-12 text-center uppercase tracking-widest">
+    Autoridades de la Facultad de Obstetricia
+  </h2>
+
+  <div class="grid gap-10 sm:grid-cols-2 md:grid-cols-3">
+    ${
+      [
+        {
+          nombre: "Dra. Rosa Elvira Ruiz Reyes",
+          cargo: "Decana",
+          imagen: "imagenes/decana.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=99061"
+        },
+        {
+          nombre: "Dra. Carmen Rosa Laos de Ajalcriña",
+          cargo: "Directora de Escuela Profesional",
+          imagen: "imagenes/directora.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=107687"
+        },
+        {
+          nombre: "Dr. Silverio Alejo Huamaní",
+          cargo: "Director de Departamento Académico",
+          imagen: "imagenes/director.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=98812"
+        }
+      ]
+      .map(persona => `
+        <div class="group bg-white rounded-3xl overflow-hidden border border-pink-100 shadow-lg hover:shadow-2xl transition-all duration-300">
+
+          <!-- Imagen -->
+          <div class="relative aspect-[3/4] overflow-hidden">
+            <img 
+              src="${persona.imagen}" 
+              alt="${persona.nombre}"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-red-900/90 to-transparent"></div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-8 text-center">
+            <h3 class="font-bold text-xl text-gray-900 mb-1">
+              ${persona.nombre}
+            </h3>
+
+            <p class="text-pink-700 font-semibold text-sm uppercase tracking-wide mb-6">
+              ${persona.cargo}
+            </p>
+
+            <a 
+              href="${persona.perfil}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-6 py-2.5 bg-red-900 text-white rounded-full text-sm font-semibold hover:bg-red-800 transition shadow-md"
+            >
+              <i data-lucide="award" class="w-4 h-4"></i>
+              Ver perfil CTI Vitae
+            </a>
+          </div>
+
+        </div>
+      `).join("")
+    }
+  </div>
+</div>
+`,
+
+            docentes: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-8 border-l-8 border-red-800 pl-4">
+    Plana Docente
+  </h2>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    ${
+      [
+        {
+          nombre: "Dr. RUIZ REYES, ROSA ELVIRA",
+          categoria: "Ordinario Principal",
+          imagen: "imagenes/decana.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=99061"
+        },
+        {
+          nombre: "Dr. ALEJO HUAMANI, SILVERIO",
+          categoria: "Ordinario Principal",
+          imagen: "imagenes/director.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=98812"
+        },
+        {
+          nombre: "Dra. LAOS DE AJALCRIÑA, CARMEN ROSA",
+          categoria: "Ordinario Principal",
+          imagen: "imagenes/directora.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=107687"
+        },
+        {
+          nombre: "Dr. ROJAS BERNAOLA, CIRILO JESUS",
+          categoria: "Ordinario Principal",
+          imagen: "imagenes/rojasbernaola.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=100081"
+        },
+        {
+          nombre: "Mg. BOADA CAVERO, IVONNE ALEIDA",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/boada.jpeg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=82173"
+        },
+        {
+          nombre: "Lic. CHAVEZ GALVEZ, OFELIA ESTHER",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/chavezgalvez.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=428640"
+        },
+        {
+          nombre: "Mg. DIAZ ORTIZ, JUANA SEBASTIANA",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/diazortiz.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=428632"
+        },
+        {
+          nombre: "Mg. GABRIEL GUEVARA, ANARELA LIDUVINA",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/gabrielguevara.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=432830"
+        },
+        {
+          nombre: "Mg. GARCIA GUTIERREZ, JULIA ELSA",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/garciagutierrez.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=160614"
+        },
+        {
+          nombre: "Mg. HERNANDEZ LOPEZ, MIGUEL ANGEL",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/hernandezlopezz.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=148173"
+        },{
+          nombre: "Mg. LLANTO CANCHOS, JOSE ANGEL",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/llantocanchos.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=87849"
+        },{
+          nombre: "Mg. PALACIOS FUENTES, NIDIA MAGALI",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/palaciosfuentes.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=273375"
+        },{
+          nombre: "Mg. PUERTAS ANICAMA, VANESSA FIORELLA",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/palaciosfuentes.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=238403"
+        },{
+          nombre: "Dr. ZEGARRA ZEBALLOS, MARIELA ROSARIO",
+          categoria: "Ordinario Auxiliar",
+          imagen: "imagenes/palaciosfuentes.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=65725"
+        },
+        {
+          nombre: "Mg. RAMOS WILSON, LILIANA MYLENA",
+          categoria: "Ordinario Asociado",
+          imagen: "imagenes/ramoswilson.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=238808"
+        },{
+          nombre: "Mg. JUNES FLORES, FRANKLIN EDWARD",
+          categoria: "Ordinario Asociado",
+          imagen: "imagenes/junesflores.jpg",
+          perfil: "https://ctivitae.concytec.gob.pe/appDirectorioCTI/VerDatosInvestigador.do?id_investigador=100292"
+        },
+      ]
+      .map(docente => `
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-50 flex items-center space-x-4 hover:border-pink-200 transition-colors">
+
+          <div class="relative">
+            <img 
+              src="${docente.imagen}" 
+              alt="${docente.nombre}"
+              class="w-20 h-20 rounded-2xl object-cover"
+            />
+            <div class="absolute -bottom-1 -right-1 bg-pink-500 w-5 h-5 rounded-full border-2 border-white"></div>
+          </div>
+
+          <div class="flex-1">
+            <h3 class="font-bold text-gray-900">${docente.nombre}</h3>
+            <p class="text-xs text-pink-600 font-semibold mb-2">
+              ${docente.categoria}
+            </p>
+
+            <a 
+              href="${docente.perfil}" 
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block text-[11px] bg-pink-100 text-red-900 px-3 py-1 rounded-full font-bold hover:bg-red-800 hover:text-white transition-all"
+            >
+              VER PERFIL
+            </a>
+          </div>
+        </div>
+      `).join("")}
+  </div>
+</div>
+`,
+
+            malla: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-8">Plan de Estudios 2024</h2>
+
+  <div class="grid lg:grid-cols-2 gap-8">
+    ${
+      [
+        {
+    ciclo: 1,
+    cursos: [
+      { codigo: "1P38011", nombre: "Estrategias del Aprendizaje", creditos: "4.0", desc: "Desarrollo de habilidades cognitivas y métodos de estudio para la formación académica superior." },
+      { codigo: "1P38012", nombre: "Matemática", creditos: "4.0", desc: "Fundamentos lógicos y cálculo aplicado al análisis de datos en salud materno-perinatal." },
+      { codigo: "1P38013", nombre: "Defensa y Realidad Nacional", creditos: "3.0", desc: "Estudio de la soberanía nacional, contexto geopolítico y responsabilidad ciudadana." },
+      { codigo: "1P38014", nombre: "Biología General", creditos: "4.0", desc: "Bases moleculares y celulares de la vida, esenciales para la comprensión de la anatomía." },
+      { codigo: "1P38015", nombre: "Lenguaje", creditos: "3.0", desc: "Comunicación asertiva, redacción científica y expresión oral profesional." }
+    ]
+        },
+        {
+    ciclo: 2,
+    cursos: [
+      { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
+      { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
+      { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
+      { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
+      { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
+          ]
+        },
+        {
+    ciclo: 3,
+    cursos: [
+      { codigo: "1P38031", nombre: "Anatomía General", creditos: "5.0", desc: "Descripción macroscópica detallada de los sistemas y aparatos del cuerpo humano." },
+      { codigo: "1P38032", nombre: "Histología y Embriología General", creditos: "4.0", desc: "Estudio microscópico de tejidos y las etapas iniciales del desarrollo prenatal." },
+      { codigo: "1P38033", nombre: "Física Médica", creditos: "3.0", desc: "Leyes físicas aplicadas al funcionamiento del organismo y equipos médicos." },
+      { codigo: "1P38034", nombre: "Ecología y Desarrollo Sostenible", creditos: "3.0", desc: "Relación entre ecosistemas y salud humana bajo un enfoque sostenible." },
+      { codigo: "1P38035", nombre: "Metodología de la Investigación Científica", creditos: "3.0", desc: "Bases para diseñar y ejecutar proyectos de investigación en salud." }
+    ]
+  },
+  {
+    ciclo: 4,
+    cursos: [
+      { codigo: "1P38041", nombre: "Anatomía Obstétrica", creditos: "4.0", desc: "Estudio específico de la pelvis, canal del parto y estructuras asociadas." },
+      { codigo: "1P38042", nombre: "Fisiología General", creditos: "4.0", desc: "Funcionamiento integral del organismo humano y sus sistemas." },
+      { codigo: "1P38043", nombre: "Microbiología y Parasitología", creditos: "4.0", desc: "Agentes infecciosos y su relación con la salud reproductiva." },
+      { codigo: "1P38044", nombre: "Bioquímica", creditos: "4.0", desc: "Procesos metabólicos celulares y moleculares fundamentales." },
+      { codigo: "1P38045", nombre: "Introducción a la Obstetricia", creditos: "3.0", desc: "Rol profesional, ética y campo laboral del obstetra." }
+    ]
+  },
+  {
+    ciclo: 5,
+    cursos: [
+      { codigo: "1P38051", nombre: "Fisiología Obstétrica", creditos: "4.0", desc: "Cambios fisiológicos durante el embarazo, parto y puerperio." },
+      { codigo: "1P38052", nombre: "Obstetricia I", creditos: "5.0", desc: "Semiología obstétrica y control prenatal del embarazo normal." },
+      { codigo: "1P38053", nombre: "Farmacología General", creditos: "4.0", desc: "Principios del uso terapéutico de medicamentos." },
+      { codigo: "1P38054", nombre: "Nutrición y Salud", creditos: "3.0", desc: "Requerimientos nutricionales de la gestante, madre y recién nacido." },
+      { codigo: "1P38055", nombre: "Ética y Deontología Profesional", creditos: "2.0", desc: "Principios éticos y normas legales del ejercicio profesional." }
+    ]
+  },
+  {
+    ciclo: 6,
+    cursos: [
+      { codigo: "1P38061", nombre: "Obstetricia II", creditos: "5.0", desc: "Atención del parto y cuidado del puerperio normal." },
+      { codigo: "1P38062", nombre: "Ginecología I", creditos: "4.0", desc: "Salud ginecológica y prevención de enfermedades." },
+      { codigo: "1P38063", nombre: "Farmacología Obstétrica", creditos: "3.0", desc: "Uso seguro de medicamentos durante la gestación." },
+      { codigo: "1P38064", nombre: "Genética Humana", creditos: "3.0", desc: "Herencia genética y alteraciones cromosómicas." },
+      { codigo: "1P38065", nombre: "Epidemiología", creditos: "3.0", desc: "Distribución y control de enfermedades en poblaciones." }
+    ]
+  },
+  {
+    ciclo: 7,
+    cursos: [
+      { codigo: "1P38071", nombre: "Obstetricia III", creditos: "5.0", desc: "Manejo de embarazos de alto riesgo y emergencias obstétricas." },
+      { codigo: "1P38072", nombre: "Salud Reproductiva", creditos: "4.0", desc: "Planificación familiar, ITS y derechos reproductivos." },
+      { codigo: "1P38073", nombre: "Ecografía Obstétrica", creditos: "3.0", desc: "Evaluación ecográfica del desarrollo fetal." },
+      { codigo: "1P38074", nombre: "Patología General", creditos: "3.0", desc: "Cambios estructurales y funcionales en la enfermedad." },
+      { codigo: "1P38075", nombre: "Psicoprofilaxis Obstétrica", creditos: "3.0", desc: "Preparación integral de la gestante para el parto." }
+    ]
+  },
+  {
+    ciclo: 8,
+    cursos: [
+      { codigo: "1P38081", nombre: "Obstetricia IV", creditos: "5.0", desc: "Procedimientos quirúrgicos y manejo avanzado obstétrico." },
+      { codigo: "1P38082", nombre: "Ginecología II", creditos: "4.0", desc: "Patologías ginecológicas complejas y climaterio." },
+      { codigo: "1P38083", nombre: "Medicina Legal", creditos: "3.0", desc: "Aspectos legales y peritaje en salud." },
+      { codigo: "1P38084", nombre: "Administración en Salud", creditos: "3.0", desc: "Gestión de servicios y liderazgo en salud." },
+      { codigo: "1P38085", nombre: "Neonatología", creditos: "3.0", desc: "Atención integral del recién nacido." }
+    ]
+  },
+  {
+    ciclo: 9,
+    cursos: [
+      { codigo: "1P38091", nombre: "Internado Hospitalario I", creditos: "12.0", desc: "Práctica preprofesional intensiva en áreas clínicas." },
+      { codigo: "1P38092", nombre: "Seminario de Tesis I", creditos: "4.0", desc: "Formulación y sustentación del proyecto de investigación." }
+    ]
+  },
+  {
+    ciclo: 10,
+    cursos: [
+      { codigo: "1P38101", nombre: "Internado Hospitalario II", creditos: "12.0", desc: "Consolidación de competencias clínicas profesionales." },
+      { codigo: "1P38102", nombre: "Seminario de Tesis II", creditos: "4.0", desc: "Ejecución y defensa final del trabajo de investigación." }
+    ]
+
+        }
+      ]
+      .map(ciclo => `
+        <div class="bg-white rounded-2xl shadow-sm border border-pink-100">
+
+          <div class="bg-gradient-to-r from-red-900 to-red-800 text-white px-6 py-4 rounded-t-2xl">
+            <h3 class="font-bold text-lg flex items-center">
+              <i data-lucide="layers" class="mr-2 w-5 h-5"></i>
+              CICLO ACADÉMICO ${ciclo.ciclo}
+            </h3>
+          </div>
+
+          <div class="p-2 divide-y divide-pink-50">
+            ${
+              ciclo.cursos.map(curso => `
+                <div class="p-4 hover:bg-pink-50/50 rounded-xl transition-colors">
+                  <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-red-800 bg-red-50 px-2 py-1 rounded">
+                      ${curso.codigo}
+                    </span>
+                    <span class="text-xs font-bold text-pink-600">
+                      ${curso.creditos} CRÉDITOS
+                    </span>
+                  </div>
+
+                  <h4 class="font-bold text-gray-800 mb-1">
+                    ${curso.nombre}
+                  </h4>
+
+                  <p class="text-xs text-gray-500 leading-relaxed">
+                    ${curso.desc}
+                  </p>
+                </div>
+              `).join("")}
+          </div>
+        </div>
+      `).join("")}
+  </div>
+</div>
+`,
+
+            eventos: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-8">Eventos e Infraestructura de Nuestra Facultad</h2>
+
+  <div class="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+    ${
+      [
+        {
+          titulo: "Facultad de Obstetricia",
+          descripcion: "Espacio equipado para prácticas clínicas y simulación profesional.",
+          imagen: "imagenes/banner.jpg"
+        },
+        {
+          titulo: "Reina de Obstetricia 2025",
+          descripcion: "Fernanda Lucia Paredes Ramos, nos representa con orgullo.",
+          imagen: "imagenes/infraestructura.jpg"
+        },
+        {
+          titulo: "Participacion en Congresos",
+          descripcion: "Alumnas y Docentes comprometidas con la actualización profesional.",
+          imagen: "imagenes/participacion.jpg"
+        },
+        {
+          titulo: "Reina San Luisana por el LXIII Aniversario",
+          descripcion: "Nuestra hermosa alumna representando a la facultad e universidad con orgullo.",
+          imagen: "imagenes/misssanluis.jpg"
+        },
+        {
+          titulo: "Participación en Desfile Cívico por Nuestro Aniversario",
+          descripcion: "Participacion Elegante y Orgullosa de Nuestras Alumnas en el Desfile Cívico por el Aniversario de la UNICA.",
+          imagen: "imagenes/desfile.jpg"
+        },
+        {
+          titulo: "Desfile Institucional por el Dia De La Obsteta",
+          descripcion: "En el marco de la conmemoración por el Día Internacional del Obstetra, se llevó a cabo el solemne Izamiento del Pabellón Nacional, seguido de un emotivo desfile institucional, contando con la destacada participación de nuestras estudiantes de Obstetricia y la presencia de la señora decana, Dra. Rosa Elvira Ruiz Reyes",
+          imagen: "imagenes/desfileobsteta.jpg"
+        },
+        {
+          titulo: "Bendicion de Mandiles a Nuestras Alumnas de Primer Año",
+          descripcion: "Ceremonia de Bendición de Mandiles para Nuestras Futuras Obstetras.",
+          imagen: "imagenes/mandiles.jpg"
+        }
+      ].map(item => `
+        <div class="break-inside-avoid bg-white p-4 rounded-2xl shadow-sm border border-pink-100 group">
+
+          <div class="relative overflow-hidden rounded-xl mb-4">
+            <img 
+              src="${item.imagen}" 
+              alt="${item.titulo}"
+              class="w-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-pink-600/10 group-hover:bg-transparent transition-colors"></div>
+          </div>
+
+          <h3 class="font-bold text-red-900 mb-1 text-sm">
+            ${item.titulo}
+          </h3>
+
+          <p class="text-xs text-gray-600">
+            ${item.descripcion}
+          </p>
+
+        </div>
+      `).join("")}
+  </div>
+</div>
+`,
+
+            contacto: `
+                <div class="bg-white rounded-3xl shadow-xl border border-pink-100 overflow-hidden flex flex-col lg:flex-row">
+                    <div class="lg:w-3/5 p-10">
+                        <h2 class="text-3xl font-bold text-red-900 mb-2">Contacta con nosotros</h2>
+                        <p class="text-gray-500 mb-8 italic">Estamos para resolver todas tus dudas académicas.</p>
+                        <form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Nombre Completo</label>
+                                <input type="text" class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Correo Institucional</label>
+                                <input type="email" class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Asunto</label>
+                                <select class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all">
+                                    <option>Trámites Académicos</option>
+                                    <option>Admisión</option>
+                                    <option>Otros</option>
+                                </select>
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-bold text-red-900 uppercase mb-2">Tu Mensaje</label>
+                                <textarea rows="4" class="w-full px-5 py-3 bg-pink-50 border border-transparent rounded-xl focus:border-red-800 focus:bg-white outline-none transition-all"></textarea>
+                            </div>
+                            <div class="md:col-span-2">
+                                <button type="button" class="w-full py-4 bg-red-900 text-white font-bold rounded-xl shadow-lg hover:bg-red-800 transform hover:-translate-y-1 transition-all">
+                                    ENVIAR SOLICITUD
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="lg:w-2/5 bg-red-950 p-10 text-white flex flex-col justify-center relative overflow-hidden">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-pink-500/20 rounded-full blur-3xl"></div>
+                        <h3 class="text-2xl font-bold mb-8">Información de Sede</h3>
+                        <div class="space-y-8 relative z-10">
+                          <a
+                          href="https://maps.app.goo.gl/cQBvFK1W9jbVw9ay8"
+  target="_blank"
+  class="flex items-start hover:opacity-90 transition"
+>
+    <div class="bg-red-800 p-3 rounded-xl mr-4">
+        <i data-lucide="map-pin" class="w-6 h-6 text-pink-300"></i>
+    </div>
+
+    <p class="text-sm text-white">
+        Ciudad Universitaria S/N, Ica, Perú<br>
+        <span class="opacity-60">Pabellón Central de Obstetricia</span>
+    </p>
+</a>
+<a href="mailto:obstetricia@unica.edu.pe" 
+   class="flex items-center hover:opacity-90 transition">
+    <div class="bg-red-800 p-3 rounded-xl mr-4">
+        <i data-lucide="mail" class="w-6 h-6 text-pink-300"></i>
+    </div>
+    <p class="text-sm text-white">obstetricia@unica.edu.pe</p>
+</a>
+<a 
+  href="https://www.facebook.com/profile.php?id=61567253438241"
+  target="_blank"
+  class="flex items-center hover:opacity-90 transition"
+>
+    <div class="bg-red-800 p-3 rounded-xl mr-4">
+        <i data-lucide="facebook" class="w-6 h-6 text-pink-300"></i>
+    </div>
+    <p class="text-sm text-white">Facultad de Obstetricia - UNSLG</p>
+</a>
+                        </div>
+                    </div>      
+                </div>
+            `,
+            // Vistas adicionales
+            consejo: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-8">Consejo de Facultad</h2>
+
+  <!-- PRESIDENTE -->
+  <div class="mb-8">
+    <h3 class="text-red-800 font-bold mb-2">Presidente</h3>
+    <div class="overflow-x-auto bg-white rounded-xl border border-pink-200">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="p-3 text-left">Nombre y Apellido</th>
+            <th class="p-3 text-left">Cargo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-t">
+            <td class="p-3">Dra. Rosa Elvira Ruiz Reyes</td>
+            <td class="p-3">Decana</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REPRESENTANTES DOCENTES -->
+  <div class="mb-10">
+    <h3 class="text-red-800 font-bold mb-2">Representantes de los Docentes</h3>
+    <div class="overflow-x-auto bg-white rounded-xl border border-pink-200">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="p-3 text-left">Nombre y Apellido</th>
+            <th class="p-3 text-left">Categoría</th>
+            <th class="p-3 text-left">Resolución</th>
+            <th class="p-3 text-center">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${[
+            {
+              nombre: "Laos de Aguilar, Carmen Rosa",
+              categoria: "Ordinario Principal",
+              resolucion: "R.R. 323-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+            },
+            {
+              nombre: "Rojas Bernales, Cirilo Jesús",
+              categoria: "Ordinario Principal",
+              resolucion: "R.R. 323-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf#"
+            },
+            {
+              nombre: "Alejo Huamán, Silverio",
+              categoria: "Ordinario Principal",
+              resolucion: "R.R. 323-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+            },
+            {
+              nombre: "Ramos Wilcor, Lizana Meyna",
+              categoria: "Ordinario Asociado",
+              resolucion: "R.R. 323-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+            },
+            {
+              nombre: "Junes Flores, Franklin Edward",
+              categoria: "Ordinario Asociado",
+              resolucion: "R.R. 323-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+            },
+            {
+              nombre: "Puctas Aciarra, Vanessa Fiorella",
+              categoria: "Ordinario Auxiliar",
+              resolucion: "R.R. 1593-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/11/11/RR-323-2024.pdf"
+            }
+          ].map(item => `
+            <tr class="border-t">
+              <td class="p-3">${item.nombre}</td>
+              <td class="p-3">${item.categoria}</td>
+              <td class="p-3">${item.resolucion}</td>
+              <td class="p-3 text-center">
+                <a href="${item.link}" target="_blank"
+                  class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg transition">
+                  Descargar
+                </a>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- REPRESENTANTES ESTUDIANTES -->
+  <div class="mb-10">
+    <h3 class="text-red-800 font-bold mb-2">Representantes de los Estudiantes</h3>
+    <div class="overflow-x-auto bg-white rounded-xl border border-pink-200">
+      <table class="w-full text-sm">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="p-3 text-left">Nombre y Apellido</th>
+            <th class="p-3 text-left">Resolución</th>
+            <th class="p-3 text-center">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${[
+            {
+              nombre: "Clares Morón, Stassy Anika",
+              resolucion: "R.R. 1594-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
+            },
+            {
+              nombre: "García Medina, Camila Jessa",
+              resolucion: "R.R. 1594-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
+            },
+            {
+              nombre: "De la Rosa Rojas, Valeria Maddy",
+              resolucion: "R.R. 1594-R-UNICA-2024",
+              link: "https://www.unica.edu.pe/transparencia/buscador/sistema/upload/archivos/2024/09/28/RR-1594-2024.pdf"
+            }
+          ].map(item => `
+            <tr class="border-t">
+              <td class="p-3">${item.nombre}</td>
+              <td class="p-3">${item.resolucion}</td>
+              <td class="p-3 text-center">
+                <a href="${item.link}" target="_blank"
+                  class="bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-lg transition">
+                  Descargar
+                </a>
+              </td>
+            </tr>
+          `).join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- BOTÓN FINAL -->
+  <div class="mt-8">
+    <a href="https://www.unica.edu.pe/transparencia/AutorOrganismos/facultad/f22/f22.php"
+       target="_blank"
+       class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl shadow">
+      Visitar Portal de Transparencia
+    </a>
+  </div>
+</div>
+`,
+
+
+            programas: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-10 text-center uppercase">
+    Oferta Académica
+  </h2>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+
+    ${[
+      {
+        titulo: "Pregrado en Obstetricia",
+        img: "imagenes/licenciatura.jpg",
+        descripcion: "Forma profesionales competentes en salud sexual y reproductiva, atención materno-perinatal y promoción de la salud con enfoque humanista.",
+        duracion: "10 ciclos académicos",
+        grado: "Bachiller y Licenciado en Obstetricia",
+        link: "https://www.unica.edu.pe/obstetricia/info/estudios/PRE%20-%20Obstetricia%20-%20Plan.pdf"
+      },
+      {
+        titulo: "Segunda Especialidad",
+        img: "imagenes/especialidad.jpg",
+        descripcion: "Programas dirigidos a obstetras titulados que buscan fortalecer sus competencias clínicas y profesionales.",
+        duracion: "2 a 3 semestres",
+        grado: "Título de Segunda Especialidad",
+        link: "https://www.unica.edu.pe/obstetricia/"
+      },
+      {
+        titulo: "Maestrías",
+        img: "imagenes/maestria.jpg",
+        descripcion: "Formación de alto nivel en salud pública, gestión, docencia universitaria y salud materno perinatal.",
+        duracion: "4 semestres",
+        grado: "Grado de Maestro",
+        link: "https://www.unica.edu.pe/noticias/2025/08/19/escuela-de-posgrado-maestria-en-obstetricia/"
+      },
+      {
+        titulo: "Doctorado en Ciencias de la Salud",
+        img: "imagenes/doctorado.jpg",
+        descripcion: "Programa orientado a la investigación científica avanzada y liderazgo académico en ciencias de la salud.",
+        duracion: "6 semestres",
+        grado: "Grado de Doctor",
+        link: "https://www.unica.edu.pe/posgrado/"
+      }
+    ].map(p => `
+      <div class="bg-white rounded-2xl shadow-sm border border-pink-100 overflow-hidden group">
+        
+        <div class="relative overflow-hidden">
+          <img src="${p.img}" 
+               class="w-full h-52 object-cover group-hover:scale-110 transition-transform duration-500"
+               alt="${p.titulo}">
+          <div class="absolute inset-0 bg-red-900/10"></div>
+        </div>
+
+        <div class="p-6">
+          <h3 class="text-xl font-bold text-red-900 mb-2">${p.titulo}</h3>
+
+          <p class="text-sm text-gray-600 mb-4">
+            ${p.descripcion}
+          </p>
+
+          <ul class="text-sm text-gray-700 mb-4 space-y-1">
+            <li><strong>Duración:</strong> ${p.duracion}</li>
+            <li><strong>Grado/Título:</strong> ${p.grado}</li>
+          </ul>
+
+          <a href="${p.link}" 
+             class="inline-block bg-red-900 hover:bg-red-800 text-white text-sm font-bold px-5 py-2 rounded-xl transition">
+            Ver más información
+          </a>
+        </div>
+      </div>
+    `).join("")}
+
+  </div>
+</div>
+`,
+
+            noticias: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-8 text-center">
+    Noticias y Avisos
+  </h2>
+
+  <div class="space-y-6">
+    ${
+      [
+        {
+          fecha: "30 DIC 2025",
+          titulo: "Cronograma de Clase Magistral y Entrevista Personal",
+          resumen: "Se comunica a los postulantes aptos del Concurso Público para Contrato Docente 2025 que la Clase Magistral y la Entrevista Personal se realizarán el: 30 de Diciembre a las 9:00 am en Sala de Docentes.  ",
+          imagen: "imagenes/convocatoria.jpg",
+          link: "https://www.facebook.com/share/p/1HCVnPjGHn/"
+        },
+        {
+          fecha: "28 DIC 2025",
+          titulo: "Resultados del Examen de Admision - 2025-II",
+          resumen: "La Universidad Nacional San Luis Gonzaga saluda y felicita a los ingresantes del Examen de Admisión 2025-II por alcanzar una vacante.",
+          imagen: "imagenes/examen.jpg",
+          link: "https://www.facebook.com/UnicaSLG/posts/pfbid0EMZ7YyqKuK7Z2Pej83mtGYGBTvLL6Unx3wNEcaiWcyeQb2q53Pt3BEF1YkqTY3mol"
+        },
+        {
+          fecha: "18 DIC 2025",
+          titulo: "Proyección Social: Una Navidad que Inspira",
+          resumen: "Las estudiantes de la Facultad de Obstetricia llevaron alegría a niños y familias vulnerables en Ica durante la campaña navideña.",
+          imagen: "imagenes/proyeccion1.jpg",
+          link: "https://www.facebook.com/share/p/1H4uVxpZm8/"
+        },
+        {
+          fecha: "20 DIC 2025",
+          titulo: "Feliz Aniversario a nuestra querida Universidad Nacional San Luis Gonzaga de Ica",
+          resumen: "𝙇𝙖 𝙁𝙖𝙘𝙪𝙡𝙩𝙖𝙙 𝙙𝙚 𝙊𝙗𝙨𝙩𝙚𝙩𝙧𝙞𝙘𝙞𝙖, junto a su decana ✨𝘿𝙧𝙖. 𝙍𝙤𝙨𝙖 𝙀𝙡𝙫𝙞𝙧𝙖 𝙍𝙚𝙮𝙚𝙨 𝙍𝙪𝙞𝙯✨, expresa su más cálido saludo y profundo reconocimiento a nuestra casa superior de estudios por estos años de trayectoria, compromiso académico y vocación de servicio a la sociedad.",
+          imagen: "imagenes/aniversario.jpg",
+          link: "https://www.facebook.com/share/p/17cosfgYxp/"
+        },
+        {
+          fecha: "27 NOV 2025",
+          titulo: "Estudiantes de Obstetricia realizan charla informativa",
+          resumen: "En el marco del Día Internacional de la Eliminación de la Violencia contra la Mujer 🕊️, las estudiantes de la Facultad de Obstetricia desarrollaron una charla informativa dirigida a la comunidad, con el objetivo de sensibilizar y brindar orientación sobre la prevención de la violencia.",
+          imagen: "imagenes/charla.jpg",
+          link: "https://www.facebook.com/share/p/14PgSTGprBX/"
+        },
+        {
+          fecha: "31 OCT 2025",
+          titulo: "Feliz 41° Aniversario Facultad de Enfermeria",
+          resumen: "La Facultad de Obstetricia expresa su más sincero y afectuoso saludo a la Dra. Susana Alvarado Alfaro, decana de la Facultad de Enfermería, y a toda la comunidad académica, docente y estudiantil 🩺👩‍⚕️👨‍⚕️ por conmemorar su 41° aniversario de vida institucional.",
+          imagen: "imagenes/proyeccion1.jpg",
+          link: "https://www.facebook.com/share/p/1Ga4RynNpp/"
+        },
+        {
+          fecha: "10 OCT 2025",
+          titulo: "Día Nacional de la Obstetra",
+          resumen: "Hoy, en la Universidad Nacional “San Luis Gonzaga”, se celebró con gran entusiasmo el Día Nacional de la Obstetra, evento que contó con la presencia de la Dra. Rosa Elvira Ruiz Reyes, Decana de la Facultad de Obstetricia.",
+          imagen: "imagenes/diaobstetra.jpg",
+          link: "https://www.facebook.com/share/p/1DRkR1Sp5S/"
+        },
+      ].map(noticia => `
+        <a 
+          href="${noticia.link}"
+          class="block group"
+        >
+          <div class="bg-white p-4 rounded-xl shadow-sm border border-pink-50 
+                      flex gap-4 items-center hover:border-pink-200 transition">
+
+            <!-- Imagen -->
+            <div class="w-24 h-24 flex-shrink-0 overflow-hidden rounded-lg">
+              <img 
+                src="${noticia.imagen}" 
+                alt="${noticia.titulo}"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+
+            <!-- Texto -->
+            <div class="flex-1">
+              <p class="text-xs text-pink-500 font-bold uppercase mb-1">
+                ${noticia.fecha}
+              </p>
+
+              <h4 class="font-bold text-gray-800 leading-tight">
+                ${noticia.titulo}
+              </h4>
+
+              <p class="text-xs text-gray-600 mt-1">
+                ${noticia.resumen}
+              </p>
+            </div>
+
+            <!-- Flecha -->
+            <i data-lucide="chevron-right" class="text-red-800 w-5 h-5"></i>
+          </div>
+        </a>
+      `).join("")}
+  </div>
+</div>
+`,
+
+            
+            testimonios: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-10 text-center uppercase tracking-widest">
+    Nuestros Estudiantes y Egresados
+  </h2>
+
+  <div class="grid md:grid-cols-2 gap-8">
+
+    ${[
+      {
+        nombre: "Lic. María Rosa Espinoza",
+        texto: "La formación en la UNICA me dio las herramientas no solo técnicas, sino humanas para acompañar a las madres en el momento más sublime de sus vidas."
+      },
+      {
+        nombre: "Lic. Ana Lucía Torres",
+        texto: "La Facultad de Obstetricia me permitió desarrollarme profesionalmente con valores, responsabilidad social y compromiso con la salud pública."
+      },
+      {
+        nombre: "Estudiante: Lina Manrique Huancahuari <p> I CICLO - B",
+        texto: "Estudiar Obstetricia en la UNICA significa vivir cada día la pasión por la salud materna, combinada con el espíritu de lucha y compromiso que caracteriza a sus estudiantes. Aquí aprendí que la vocación y la perseverancia van de la mano en cada etapa de la formación profesional."
+      },
+      { 
+        nombre: "Estudiante: Brilleth Aija Reyes <p> I CICLO - B",
+        texto: "Estudiar Obstetricia en la UNICA implica asumir un compromiso constante con la salud y la formación profesional, aprendiendo también a desenvolverse con resiliencia frente a los desafíos institucionales que forman parte de la vida universitaria"
+      },
+      {
+        nombre: "Estudiante: Jennifer Thalia García Huaroto <p> V CICLO - A",
+        texto: "Mi formación ha sido un camino de aprendizaje y retos. A pesar de algunas dificultades académicas y administrativas, estas experiencias me han impulsado a ser autodidacta y a valorar el compromiso ético que exige esta profesión. Valoro especialmente la comunidad estudiantil y las oportunidades prácticas que recibimos desde ciclos inferiores, las cuales nos permiten conocer de cerca la realidad de nuestra labor."
+      },
+      {
+        nombre: "Estudiante: Valeria Palacios Mendoza <p> III CICLO - B",
+        texto: "La Obstetricia en la UNICA no solo me formó académicamente, también me enseñó a ser perseverante, solidaria y consciente de la realidad social. Cada experiencia vivida fortaleció mi vocación de servicio y mi compromiso con la salud de las mujeres."
+      }
+      
+    ].map(t => `
+      <div class="bg-red-900 text-white p-10 rounded-3xl text-center relative shadow-lg">
+
+        <i data-lucide="quote" 
+           class="w-12 h-12 mx-auto mb-6 text-pink-400 opacity-50"></i>
+
+        <p class="text-lg italic font-light mb-6 leading-relaxed">
+          "${t.texto}"
+        </p>
+
+        <h4 class="font-bold text-pink-300 uppercase tracking-wide">
+          – ${t.nombre}
+        </h4>
+
+      </div>
+    `).join("")}
+
+  </div>
+</div>
+`,
+
+            
+           faq: `
+<div>
+  <h2 class="text-3xl font-bold text-red-900 mb-8">Preguntas Frecuentes</h2>
+
+  <div class="space-y-4">
+    ${
+      [
+        {
+          pregunta: "¿Cómo solicito mi constancia de estudios?",
+          respuesta: "Debes realizar el pago correspondiente en tesorería y adjuntar el voucher mediante la plataforma virtual o mesa de partes."
+        },
+        {
+          pregunta: "¿Cuántos años dura la carrera de Obstetricia?",
+          respuesta: "La carrera tiene una duración aproximada de 5 años, distribuidos en 10 ciclos académicos, más el internado."
+        },
+        {
+          pregunta: "¿Dónde se realizan las prácticas preprofesionales?",
+          respuesta: "Las prácticas se desarrollan en hospitales, centros de salud y establecimientos con convenio con la universidad."
+        },
+        {
+          pregunta: "¿Cómo puedo acceder a mi aula virtual?",
+          respuesta: "Debes ingresar con tu usuario institucional al sistema virtual asignado por la universidad."
+        },
+        {
+          pregunta: "¿Qué requisitos necesito para matricularme?",
+          respuesta: "Debes haber aprobado el ciclo anterior, no tener deudas pendientes y seguir el cronograma oficial de matrícula."
+        },
+        {
+          pregunta: "¿La facultad cuenta con laboratorios especializados?",
+          respuesta: "Sí, cuenta con laboratorios equipados para prácticas de simulación y formación profesional."
+        },
+        {
+          pregunta: "¿Cómo solicito una constancia o certificado académico?",
+          respuesta: "La solicitud se realiza mediante mesa de partes, adjuntando el comprobante de pago correspondiente."
+        },
+        {
+          pregunta: "¿Existe apoyo psicológico para los estudiantes?",
+          respuesta: "Sí, la universidad brinda servicios de orientación psicológica y bienestar universitario."
+        },
+        {
+          pregunta: "¿Puedo realizar investigaciones siendo estudiante?",
+          respuesta: "Sí, puedes participar en proyectos y líneas de investigación promovidas por la facultad."
+        },
+        {
+          pregunta: "¿Dónde puedo informarme sobre comunicados oficiales?",
+          respuesta: "Los comunicados se publican en la página web oficial y redes institucionales de la facultad."
+        }
+      ]
+      .map(item => `
+        <div class="bg-white p-5 rounded-xl border border-pink-100">
+          <h4 class="font-bold text-red-900 flex items-center">
+            <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i>
+            ${item.pregunta}
+          </h4>
+          <p class="mt-2 text-sm text-gray-600">
+            ${item.respuesta}
+          </p>
+        </div>
+      `)
+      .join("")
+    }
+  </div>
+</div>
+`,
+        };
+        function navigate(viewKey) {
+            // Animación de salida
+            contentArea.classList.remove('content-fade');
+            contentArea.style.opacity = '0';
+
+            setTimeout(() => {
+                // Cambiar Contenido
+                contentArea.innerHTML = views[viewKey] || `<div class="text-center p-20"><h2 class="text-2xl font-bold text-red-900">Sección en construcción</h2></div>`;
+                contentArea.classList.add('content-fade');
+                contentArea.style.opacity = '1';
+                
+                // Actualizar estado del menú (estilos activos)
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active-link');
+                    if (item.getAttribute('onclick').includes(viewKey)) {
+                        item.classList.add('active-link');
+                    }
+                });
+
+                // Re-inicializar iconos para el contenido nuevo
+                lucide.createIcons();
+
+                // Cerrar menú móvil si está abierto
+                if (!sidebar.classList.contains('-translate-x-full')) {
+                    toggleMenu();
+                }
+
+                // Scroll al inicio del contenido
+                window.scrollTo(0, 0);
+            }, 200);
+        }
+
+        // Carga inicial
+        window.onload = () => {
+            navigate('inicio');
+        }
+    </script>
+</body>
+</html>
